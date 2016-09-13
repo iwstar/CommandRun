@@ -2,7 +2,7 @@
 <%	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" >
 <div class="container-fluid">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="<%=basePath%>">Command</a>

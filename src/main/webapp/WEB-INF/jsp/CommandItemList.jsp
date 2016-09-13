@@ -17,7 +17,7 @@
 <script type="text/javascript" src="<%=basePath %>jquery/jquery-1.12.4.min.js"></script>
 </head>
 <body>
-	<jsp:include page="head.jsp" />
+<jsp:include page="head.jsp" />
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -32,7 +32,6 @@
 			<table class="table table-bordered">
 				<tr>
 					<th width="50px"></th>
-					<th width="100px">序号</th>
 					<th>名称</th>
 					<th width="100px">运行顺序</th>
 					<th>命令</th>
@@ -45,7 +44,6 @@
 				%>
 				<tr>
 					<td><input name="command_list" type="checkbox" id="<%=i %>" value="<%=ci.getId() %>" /></td>
-					<td><%=i%></td>
 					<td><%=ci.getName()%></td>
 					<td><%=ci.getRun_index() %></td>
 					<td><%=ci.getCommand()%></td>
