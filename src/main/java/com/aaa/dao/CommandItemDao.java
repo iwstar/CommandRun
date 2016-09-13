@@ -11,4 +11,5 @@ public CommandItem getCommandItemById(UUID item_id);
 public String updateCommandItem(CommandItem commandItem);
 public List<CommandItem> getCommandItemByGroupID(UUID group_id);
 public String delCommandItem(UUID item_id);
+public List<CommandItem> getCommandItemByIds(UUID[] ids);
 }

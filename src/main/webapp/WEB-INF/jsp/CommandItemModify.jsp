@@ -17,7 +17,7 @@
 <jsp:include page="head.jsp"/>
 <div class="container-fluid">
 	<div class="row">
-		<form class="form-horizontal" role="form" id="form1" name="form1" method="post" action="<%=basePath%>item/commandItemModifySave/CommanditemList/<%=ci.getId() %>/<%=ci.getGroup_id().toString()%>/">
+		<form class="form-horizontal" role="form" id="form1" name="form1" method="post" action="<%=basePath%>item/commandItemModifySave/CommandItemList/<%=ci.getId() %>/<%=ci.getGroup_id().toString()%>/">
 			<div class="form-group">
 				<label for="id" class="col-sm-2 control-label">ID:</label>
 				<div class="col-sm-6">

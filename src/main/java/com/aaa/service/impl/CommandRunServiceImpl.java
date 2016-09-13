@@ -28,6 +28,19 @@ public class CommandRunServiceImpl implements CommandRunService {
 		return "请在五秒钟内切换到输入焦点位置";
 	}
 
+	@Override
+	public String runCommandChecked(String[] ids) {
+		// TODO Auto-generated method stub
+		UUID[] uuid_ids = new UUID[ids.length];
+		for (int i = 0; i < ids.length; i++) {
+			uuid_ids[i] = UUID.fromString(ids[i]);
+		}
+		KeyPressRunChecked keyPressRunChecked = new KeyPressRunChecked(commandItemDao, uuid_ids);
+		Thread t = new Thread(keyPressRunChecked);
+		t.start();
+		return "请在五秒钟内切换到输入焦点位置";
+	}
+
 	private class KeyPressRun implements Runnable {
 		private CommandItemDao commandItemDao;
 		private String group_id;
@@ -44,6 +57,35 @@ public class CommandRunServiceImpl implements CommandRunService {
 			try {
 				Thread.sleep(5000);
 				List<CommandItem> commandItem = commandItemDao.getCommandItemByGroupID(UUID.fromString(group_id));
+				for (CommandItem ci : commandItem) {
+					if (!CRKeyPress.processKey(ci.getCommand())) {
+						break;
+					}
+					Thread.sleep(2000);
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				log.error("", e);
+			}
+		}
+	}
+
+	private class KeyPressRunChecked implements Runnable {
+		private CommandItemDao commandItemDao;
+		private UUID[] ids;
+
+		public KeyPressRunChecked(CommandItemDao commandItemDao, UUID[] ids) {
+			super();
+			this.commandItemDao = commandItemDao;
+			this.ids = ids;
+		}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			try {
+				Thread.sleep(5000);
+				List<CommandItem> commandItem = commandItemDao.getCommandItemByIds(ids);
 				for (CommandItem ci : commandItem) {
 					if (!CRKeyPress.processKey(ci.getCommand())) {
 						break;

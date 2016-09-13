@@ -61,7 +61,7 @@ public class CRKeyPress {
 	public static class MykeyEvent {
 
 		public static Integer getKeyEvent(char c) {
-			Integer keycode = null;
+			Integer keycode = KeyEvent.VK_SPACE;
 			switch (c) {
 			case 'a':
 				keycode = KeyEvent.VK_A;
@@ -171,7 +171,6 @@ public class CRKeyPress {
 			case '9':
 				keycode = KeyEvent.VK_9;
 				break;
-
 			case '!':
 				keycode = KeyEvent.VK_1;
 				break;
@@ -205,11 +204,19 @@ public class CRKeyPress {
 			case '.':
 				keycode = KeyEvent.VK_PERIOD;
 				break;
+			case '/':
+				keycode = KeyEvent.VK_SLASH;
+				break;
+			case '-':
+				keycode = KeyEvent.VK_MINUS;
+				break;
+			case '_':
+				keycode = KeyEvent.VK_MINUS;
+				break;
 			case ' ':
 				keycode = KeyEvent.VK_SPACE;
 				break;
 			}
-
 			return keycode;
 		}
 	}

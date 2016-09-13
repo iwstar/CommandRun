@@ -1,5 +1,6 @@
 package com.aaa.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aaa.entity.CommandItem;
 import com.aaa.service.CommandItemService;
@@ -46,6 +48,12 @@ public class CommandItemController {
 		String message = "";
 		message = commandRunService.runCommand(group_id);
 		model.addAttribute("message", message);
+		return dest;
+	}
+	
+	@RequestMapping(value="commandRunCheckey/{dest}/",method=RequestMethod.POST)
+	public String commandRunChecked(@PathVariable String dest,@RequestParam String[] command_list,Model model){
+		model.addAttribute("message", commandRunService.runCommandChecked(command_list));
 		return dest;
 	}
 

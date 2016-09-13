@@ -72,4 +72,24 @@ public class CommandItemDaoImpl extends HibernateDaoSupport implements CommandIt
 		this.getHibernateTemplate().delete(this.getCommandItemById(item_id));
 		return null;
 	}
+	
+	@Override
+	public List<CommandItem> getCommandItemByIds(UUID[] ids) {
+		// TODO Auto-generated method stub
+		List<CommandItem> commandItemList = new ArrayList<CommandItem>();
+		String hql = "from com.aaa.entity.CommandItem where id in (:ids) order by run_index";
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		try {
+			Query<CommandItem> query = session.createQuery(hql, CommandItem.class);
+			query.setParameterList("ids", ids);
+			commandItemList = query.getResultList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error("", e);
+		} finally {
+			session.close();
+		}
+		return commandItemList;
+	}
 }
