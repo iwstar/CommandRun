@@ -6,10 +6,12 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
 @Entity
+@Table(name="commandgroup")
 public class CommandGroup {
 	private UUID id;
 	private String name;
