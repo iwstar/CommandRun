@@ -2,6 +2,8 @@ package com.aaa.controller;
 
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import com.aaa.service.CommandGroupService;
 @Controller
 @RequestMapping("group")
 public class CommandGroupController {
+	private static Logger logger=LogManager.getLogger(CommandGroupController.class);
 	@Autowired
 	private CommandGroupService commandGroupService;
 
@@ -28,6 +31,7 @@ public class CommandGroupController {
 	@PostMapping(value = "addCommandGroup/{dest}/")
 	public String addCommandGroup(@PathVariable String dest, @RequestParam String name, Model model) {
 		commandGroupService.addCommandGroup(name);
+		logger.info("group name:"+name);
 		return "forward:/group/commandGroupList/" + dest + "/";
 	}
 
